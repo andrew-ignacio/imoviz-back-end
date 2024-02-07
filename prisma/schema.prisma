@@ -3,6 +3,18 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Property {
+  id         String   @id @default(uuid())
+  name       String
+  url        String
+  value      BigInt
+  image      String
+  latitude   BigInt
+  longitude  BigInt
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
