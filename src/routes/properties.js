@@ -1,19 +1,19 @@
 import express from 'express';
 const propertiesRouter = express.Router();
 
-router.get('/properties', (req, res) => {
+propertiesRouter.get('/', (req, res) => {
   res.send('Hello world!');
 });
 
-router.post('/properties', (req, res) => {
+propertiesRouter.post('/', (req, res) => {
   res.send('Hello world!');
 });
 
-router.put('/properties', (req, res) => {
+propertiesRouter.put('/', (req, res) => {
   res.send('Hello world!');
 });
 
-router.delete('/properties', (req, res) => {
+propertiesRouter.delete('/', (req, res) => {
   res.send('Hello world!');
 });
 
