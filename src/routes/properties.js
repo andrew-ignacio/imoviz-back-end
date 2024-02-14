@@ -18,28 +18,42 @@ propertiesRouter.get('/:id', async (req, res) => {
     }
   });
 
-  if (!property) {
-    res.json({
-      error: true,
-      message: "Nenhum imóvel encontrado para o ID informado."
-    });
+  res.json(property);
+});
 
-    return;
-  }
+propertiesRouter.post('/', async (req, res) => {
+  const { name, url, value, image, latitude, longitude } = req.body;
+
+  const property = await prisma.property.create({
+    data: {
+      name, url, value, image, latitude, longitude
+    }
+  });
 
   res.json(property);
 });
 
-propertiesRouter.post('/', (req, res) => {
-  res.send('Hello world!');
+propertiesRouter.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, url, value, image, latitude, longitude } = req.body;
+
+  const property = await prisma.property.update({
+    where: { id: id },
+    data: {
+      name, url, value, image, latitude, longitude
+    }
+  })
+
+  res.json(property);
 });
 
-propertiesRouter.put('/', (req, res) => {
-  res.send('Hello world!');
-});
+propertiesRouter.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+  const property = await prisma.property.delete({
+    where: { id: id }
+  });
 
-propertiesRouter.delete('/', (req, res) => {
-  res.send('Hello world!');
+  res.json(property);
 });
 
 export default propertiesRouter;
